@@ -45,3 +45,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# dir to ignore
+section-3/thumbnail-gulp/node_modules/
