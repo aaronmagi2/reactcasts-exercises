@@ -8,7 +8,10 @@ var ListItem = require('./list-item');
 
 module.exports = React.createClass({
   handleClick: function() {
-    alert('hello from dropdown');
+    this.setState({open: !this.state.open})
+  },
+  getInitialState: function() {
+    return { open: false }
   },
 
   render: function () {
@@ -21,7 +24,7 @@ module.exports = React.createClass({
         whenClicked={this.handleClick}
         className="btn-default"
         title={this.props.title}/>
-      <ul>
+      <ul className={"dropdown-menu " + (this.state.open ? "show" : "")}>
         {list}
       </ul>
     </div>
