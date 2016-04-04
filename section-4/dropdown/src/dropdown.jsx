@@ -13,17 +13,25 @@ module.exports = React.createClass({
   getInitialState: function() {
     return { open: false }
   },
-
+  handleItemClick: function(item) {
+    this.setState({
+      open: false,
+      itemTitle: item
+    });
+  },// create ListItem and pass in item and whenItemClicked
   render: function () {
     var list = this.props.items.map(function(item){
-      return <ListItem item={item} />
-    });
+      return <ListItem
+              item={item}
+              whenItemClicked={this.handleItemClick}
+              className={this.state.itemTitle === item ? "active" : ""}/>
+    }.bind(this));
 
     return <div className="dropdown">
       <Button
         whenClicked={this.handleClick}
         className="btn-default"
-        title={this.props.title}/>
+        title={this.state.itemTitle || this.props.title}/>
       <ul className={"dropdown-menu " + (this.state.open ? "show" : "")}>
         {list}
       </ul>
